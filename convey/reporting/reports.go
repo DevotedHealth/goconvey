@@ -150,7 +150,6 @@ func fullStackTrace() string {
 }
 func removeInternalEntries(stack string) string {
 	lines := strings.Split(stack, newline)
-	filtered := []string{}
 	for _, line := range lines {
 		if !isExternal(line) {
 			return line
