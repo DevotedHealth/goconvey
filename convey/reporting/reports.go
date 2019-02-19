@@ -145,7 +145,7 @@ func stackTrace() string {
 }
 func fullStackTrace() string {
 	buffer := make([]byte, 1024*64)
-	n := runtime.Stack(buffer, true)
+	n := runtime.Stack(buffer, false)
 	return removeInternalEntries(string(buffer[:n]))
 }
 func removeInternalEntries(stack string) string {
