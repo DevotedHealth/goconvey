@@ -153,10 +153,10 @@ func removeInternalEntries(stack string) string {
 	filtered := []string{}
 	for _, line := range lines {
 		if !isExternal(line) {
-			filtered = append(filtered, line)
+			return line
 		}
 	}
-	return strings.Join(filtered, newline)
+	return "unknown"
 }
 func isExternal(line string) bool {
 	for _, p := range internalPackages {
