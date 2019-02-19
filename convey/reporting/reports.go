@@ -150,12 +150,18 @@ func fullStackTrace() string {
 }
 func removeInternalEntries(stack string) string {
 	lines := strings.Split(stack, newline)
+	filtered := []string{}
+	count := 0
 	for _, line := range lines {
 		if !isExternal(line) {
-			return line
+			filtered = append(filtered, line)
+			count++
+			if count > 3 {
+				break
+			}
 		}
 	}
-	return "unknown"
+	return strings.Join(filtered, newline)
 }
 func isExternal(line string) bool {
 	for _, p := range internalPackages {
